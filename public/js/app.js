@@ -11,9 +11,13 @@
   }
   app.controller('HostController', HostController);
 
-  function NavBarController($scope) {
+  function NavBarController($scope, $timeout) {
     $scope.login = "psyho";
     $scope.lastRefresh = new Date();
+
+    $scope.delayedText = $timeout(function() {
+      return "This text appears after 10s.";
+    }, 10000);
   }
   app.controller('NavBarController', NavBarController);
 
@@ -36,6 +40,7 @@
       return "/host/"+host.id;
     };
   });
+
 
   app.config(function($routeProvider, $locationProvider) {
     $routeProvider.when('/', {
